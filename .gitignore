@@ -41,3 +41,6 @@ functions/.DS_Store
 # data files
 price_recommendation_text/data/*.csv
 price_recommendation_text/data/*.tsv
+
+# checkpoints
+price_recommendation_text/.ipynb_checkpoints/*
