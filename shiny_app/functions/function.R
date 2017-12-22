@@ -145,8 +145,10 @@ optimize_one_product_lmer <- function(data, factor_spend,
   #optimize price for maximal profit
   opt <- optimize(profit, coef=coef_model, factor_spend=factor_spend,
                   feature=feature, display=display, vars_predictors=vars_predictors,
-                  interval = c(quantile(train$BASE_PRICE, .1), 
-                               quantile(train$BASE_PRICE, .9)), maximum = T)
+                  # interval = c(quantile(train$BASE_PRICE, .1), 
+                  #              quantile(train$BASE_PRICE, .9)), maximum = T)
+                  interval = c(min(train$BASE_PRICE) / 2, 
+                               max(train$BASE_PRICE) * 2), maximum = T)
   opt$opt_units <- profit_unit(coef_model, opt$maximum, factor_spend, 
                                feature, display, vars_predictors)
   
@@ -185,7 +187,8 @@ optimize_one_product_lmer <- function(data, factor_spend,
            shapes = list(
              list(type = "rect",
                   fillcolor = "lightgrey", line = list(color = "lightgrey"), opacity = 0.3,
-                  x0 = quantile(train$BASE_PRICE, .1), x1 = quantile(train$BASE_PRICE, .9), 
+                  #x0 = quantile(train$BASE_PRICE, .1), x1 = quantile(train$BASE_PRICE, .9), 
+                  x0 = min(train$BASE_PRICE) / 2, x1 = max(train$BASE_PRICE) * 2, 
                   xref = "x",
                   y0 = 0, y1 = max(data_plot$y) * 1.2, yref = "y")
              ))
