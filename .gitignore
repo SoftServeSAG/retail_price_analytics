@@ -47,3 +47,4 @@ price_recommendation_text/.ipynb_checkpoints/*
 
 # tmp notebooks
 price_recommendation_text/__notebook__.ipynb
+*.pickle
